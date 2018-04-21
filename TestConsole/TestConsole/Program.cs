@@ -7,17 +7,104 @@ using TestConsole.Models;
 
 namespace TestConsole
 {
-    class Program
+    class Program : Boozer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("test");
-            var cat = new Cat
-            {
-                Age = 10
-            };
-            Console.Write("Cat age:{0}", cat.Age);
+            Human vas = new Vasya();
+            vas.Check();
+            vas = new Dimon();
+            vas.Check();
+            Boozer petr = new Boozer();
+            petr.Check();
+            petr.ToDrinkVodka();
+            petr.ToDrinkVodka();
+            petr.ShowAllPoints();
+
+
+            
+            
+
             Console.ReadKey();
+        }
+    }
+
+    class Human
+    {
+        public int Age { get; set; }
+        public string Name { get; set; }
+
+        protected void GetInfo(int age, string name)
+        {
+            if (age <= 0)
+            {
+                Console.WriteLine("{0} not exist", name);
+            }
+            else
+            {
+                Console.WriteLine("{0} exist", name);
+            }
+
+        }
+
+        public virtual void Check()
+        {
+
+        }
+        
+        
+
+    }
+
+    class Vasya : Human
+    {
+        public Vasya()
+        {
+            Age = 12;
+            Name = "Vasya";
+        }
+
+        public override void Check()
+
+        {
+            GetInfo(Age, Name);
+        }
+
+    }
+
+    class Dimon : Human
+    {
+       public Dimon()
+        {
+            Age = 0;
+            Name = "Dimon";
+        }
+        public override void Check()
+        {
+            GetInfo(Age, Name);
+        }
+    }
+    class Boozer : Human
+    {
+        public int BoozerPoint { get;  set; } 
+
+        public Boozer()
+        {
+            Age = 36;
+            Name = "Petrovich";
+        }
+
+        public override void Check()
+        {
+            GetInfo(Age, Name);
+        }
+        public void ToDrinkVodka()
+        {
+            BoozerPoint++;
+        }
+        public void ShowAllPoints()
+        {
+            Console.WriteLine("BoozerPoints: {0}", BoozerPoint);
         }
     }
 }
