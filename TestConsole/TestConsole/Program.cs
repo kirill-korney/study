@@ -90,7 +90,7 @@ namespace TestConsole
 
         public Boozer()
         {
-            Age = 36;
+            Age = 26;
             Name = "Petrovich";
         }
 
